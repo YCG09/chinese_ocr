@@ -55,7 +55,7 @@ python train.py
 ## 效果展示
 
 <div>
-<img width="420" height="420" src="https://github.com/YCG09/chinese_ocr/blob/master/demo/demo.jpg"/>
+<img width="420" height="420" src="https://github.com/YCG09/chinese_ocr/blob/master/demo/demo_detect.jpg"/>
 <img width="420" height="420" src="https://github.com/YCG09/chinese_ocr/blob/master/demo/demo_rec.jpg"/>
 </div>
 

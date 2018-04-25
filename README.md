@@ -8,6 +8,7 @@
 ``` Bash
 sh setup.sh
 ```
+* 注：CPU环境执行前需注释掉for gpu部分，并解开for cpu部分的注释
 
 ## Demo
 将测试图片放入test_images目录，检测结果会保存到test_result中
@@ -42,11 +43,13 @@ python train.py
 ```
 
 #### 3. 结果
-* GPU: TITAN X
 
-| 准确率 | predict | 模型大小 |
+| val acc | predict | model |
 | -----------| ---------- | -----------|
 | 0.983 | 8ms | 18.9MB |
+
+* GPU: GTX TITAN X
+* Keras Backend: Tensorflow
 
 #### 4. 生成自己的样本
 

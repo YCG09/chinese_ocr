@@ -101,7 +101,7 @@ def gen(data_file, image_path, batchsize=128, maxlabellength=10, imagesize=(32, 
             if(len(str) <= 0):
                 print("len < 0", j)
             input_length[i] = imagesize[1] // 8
-            labels[i, :len(str)] =[int(i) - 1 for i in str]
+            labels[i, :len(str)] =[int(item) - 1 for item in str]
 
         inputs = {'the_input': x,
                 'the_labels': labels,

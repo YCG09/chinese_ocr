@@ -53,7 +53,7 @@ python train.py
 
 #### 4. 生成自己的样本
 
-可参考[SynthText_Chinese_version](https://github.com/JarveeLee/SynthText_Chinese_version)和[TextRecognitionDataGenerator](https://github.com/Belval/TextRecognitionDataGenerator)
+可参考[SynthText_Chinese_version](https://github.com/JarveeLee/SynthText_Chinese_version)，[TextRecognitionDataGenerator](https://github.com/Belval/TextRecognitionDataGenerator)和[text_renderer](https://github.com/Sanster/text_renderer)
 
 ## 效果展示
 

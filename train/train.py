@@ -152,7 +152,7 @@ if __name__ == '__main__':
     train_loader = gen('data_train.txt', './images', batchsize=batch_size, maxlabellength=maxlabellength, imagesize=(img_h, img_w))
     test_loader = gen('data_test.txt', './images', batchsize=batch_size, maxlabellength=maxlabellength, imagesize=(img_h, img_w))
 
-    checkpoint = ModelCheckpoint(filepath='./models/weights-densenet-{epoch:02d}-{val_loss:.2f}.h5', monitor='val_loss', save_best_only=False, save_weights_only=True)
+    checkpoint = ModelCheckpoint(filepath='./models/weights_densenet-{epoch:02d}-{val_loss:.2f}.h5', monitor='val_loss', save_best_only=False, save_weights_only=True)
     lr_schedule = lambda epoch: 0.0005 * 0.4**epoch
     learning_rate = np.array([lr_schedule(i) for i in range(10)])
     changelr = LearningRateScheduler(lambda epoch: float(learning_rate[epoch]))

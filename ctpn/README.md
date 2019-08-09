@@ -30,9 +30,25 @@ python ./ctpn/demo.py
 - Second, prepare the training data as referred in paper, or you can download the data I prepared from previous link. Or you can prepare your own data according to the following steps. 
 - Modify the path (/home/ubuntu/ajinkya/chinese_ocr/ctpn/data/pretrain_model/VOCdevkit/VOC2007/JPEGImages) and gt_path ("/home/ubuntu/ajinkya/chinese_ocr/ctpn/data/pretrain_model/VOCdevkit/VOC2007/Annotations/gt_img_1001.txt") , heres how gt_img_1001.txt should look (referenced from: https://github.com/eragonruan/text-detection-ctpn/blob/banjin-dev/data/readme/gt_img_859.txt)
 ```
-1192,1862,2424,1895,2405,2428,1185,2366,english,8512
-846,1280,1092,1379,1088,1478,831,1390,english,###
-299,1123,585,1222,536,1370,240,1291,english,###
+234,162,234,183,307,162,307,183,english
+318,159,318,183,374,159,374,183,english
+442,165,442,184,487,165,487,184,english
+499,166,499,185,559,166,559,185,english
+235,187,235,204,280,187,280,204,english
+281,186,281,206,300,186,300,206,english
+302,187,302,206,372,187,372,206,english
+443,190,443,207,485,190,485,207,english
+488,191,488,208,508,191,508,208,english
+512,190,512,210,556,190,556,210,english
+249,218,249,233,272,218,272,233,english
+276,220,276,232,331,220,331,232,english
+335,220,335,233,374,220,374,233,english
+377,222,377,235,435,222,435,235,english
+252,284,252,299,311,284,311,299,english
+251,324,251,337,327,324,327,337,english
+251,298,251,308,296,298,296,308,english
+300,299,300,309,333,299,333,309,english
+335,297,335,308,368,297,368,308,english
 
 ```
 

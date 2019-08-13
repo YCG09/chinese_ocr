@@ -92,9 +92,40 @@ python ./ctpn/train_net.py
 <img src="data/oriented_results/003.jpg" width=320 height=240 /><img src="data/oriented_results/004.jpg" width=320 height=240 />
 <img src="data/oriented_results/009.jpg" width=320 height=480 /><img src="data/oriented_results/010.png" width=320 height=320 />
 ***
-## oriented text connector
-- oriented text connector has been implemented, i's working, but still need futher improvement.
-- left figure is the result for DETECT_MODE H, right figure for DETECT_MODE O
-<img src="data/oriented_results/007.jpg" width=320 height=240 /><img src="data/oriented_results/007.jpg" width=320 height=240 />
-<img src="data/oriented_results/008.jpg" width=320 height=480 /><img src="data/oriented_results/008.jpg" width=320 height=480 />
-***
+## For generating mass training data:
+If you want to relabel large chunck of new dataset without labourasly hand annotating each image do the following:
+
+Go to chinese_ocr-master/ctpn/
+
+```shell
+python ./ctpn/demo2.py
+```
+This will generate a file like this:
+```
+text	644	475	788	504
+text	634	455	759	481
+text	538	312	673	334
+text	538	395	683	419
+text	528	335	702	366
+text	480	141	548	172
+text	470	312	519	334
+text	470	333	519	364
+text	470	119	587	151
+text	461	457	577	479
+text	461	420	721	448
+text	461	471	615	503
+text	413	529	682	540
+text	307	169	500	207
+text	288	214	442	238
+text	278	232	529	267
+text	277	146	405	177
+text	230	82	625	117
+text	8	30	847	89
+```
+Inside the ctpn/results directory. The above file corresponds to an image inside ctpn/demo directory
+
+Now we want to convert the above file into Pascalvoc format (so that we can see it using labelimg software).
+- To Do this copy above image and its correspoding text file.
+- Go to `ctpn/prepare_training_data`. Create two folders named `label_tmp` and `re_image`. Place your images and its corresponding text file as shown above inside `re_image` and `label_tmp` directory. 're_image' should contain all images and 'label_tmp' should contain all the text files.
+- Make sure ToVoc.py is placed inside the `ctpn/prepare_training_data` directory
+- Run ```/Downloads/eng_OCR/ctpn/prepare_training_data$ python ToVoc.py```. A new folder named TEXTVOC will be created and all your files viewable by labelimg are placed inside this TEXTVOC folder.

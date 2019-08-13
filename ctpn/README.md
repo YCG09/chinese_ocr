@@ -93,7 +93,7 @@ python ./ctpn/train_net.py
 <img src="data/oriented_results/009.jpg" width=320 height=480 /><img src="data/oriented_results/010.png" width=320 height=320 />
 ***
 ## For generating mass training data:
-If you want to relabel large chunck of new dataset without labourasly hand annotating each image do the following:
+If you want to re-label large chunck of new dataset without labourasly hand annotating each image do the following:
 
 Go to chinese_ocr-master/ctpn/
 

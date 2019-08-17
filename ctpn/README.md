@@ -1,4 +1,4 @@
-# text-detection-ctpn
+# Text-detection-ctpn
 
 text detection mainly based on ctpn (connectionist text proposal network). It is implemented in tensorflow. I use id card detect as an example to demonstrate the results, but it should be noticing that this model can be used in almost every horizontal scene text detection task. The origin paper can be found [here](https://arxiv.org/abs/1609.03605). Also, the origin repo in caffe can be found in [here](https://github.com/tianzhi0549/CTPN). For more detail about the paper and code, see this [blog](http://slade-ruan.me/2017/10/22/text-detection-ctpn/)
 ***
@@ -24,11 +24,35 @@ there are some parameters you may need to modify according to your requirement, 
 python ./ctpn/demo.py
 ```
 ***
-# training
+# Training
 ## prepare data
 - First, download the pre-trained model of VGG net and put it in data/pretrain/VGG_imagenet.npy. you can download it from [google drive](https://drive.google.com/open?id=0B_WmJoEtfQhDRl82b1dJTjB2ZGc) or [baidu yun](https://pan.baidu.com/s/1kUNTl1l). 
 - Second, prepare the training data as referred in paper, or you can download the data I prepared from previous link. Or you can prepare your own data according to the following steps. 
-- Modify the path and gt_path in prepare_training_data/split_label.py according to your dataset. And run
+- Modify the path (/home/ubuntu/ajinkya/chinese_ocr/ctpn/data/pretrain_model/VOCdevkit/VOC2007/JPEGImages) and gt_path ("/home/ubuntu/ajinkya/chinese_ocr/ctpn/data/pretrain_model/VOCdevkit/VOC2007/Annotations/gt_img_1001.txt") , heres how gt_img_1001.txt should look (referenced from: https://github.com/eragonruan/text-detection-ctpn/blob/banjin-dev/data/readme/gt_img_859.txt)
+```
+234,162,234,183,307,162,307,183,english
+318,159,318,183,374,159,374,183,english
+442,165,442,184,487,165,487,184,english
+499,166,499,185,559,166,559,185,english
+235,187,235,204,280,187,280,204,english
+281,186,281,206,300,186,300,206,english
+302,187,302,206,372,187,372,206,english
+443,190,443,207,485,190,485,207,english
+488,191,488,208,508,191,508,208,english
+512,190,512,210,556,190,556,210,english
+249,218,249,233,272,218,272,233,english
+276,220,276,232,331,220,331,232,english
+335,220,335,233,374,220,374,233,english
+377,222,377,235,435,222,435,235,english
+252,284,252,299,311,284,311,299,english
+251,324,251,337,327,324,327,337,english
+251,298,251,308,296,298,296,308,english
+300,299,300,309,333,299,333,309,english
+335,297,335,308,368,297,368,308,english
+
+```
+
+in prepare_training_data/split_label.py according to your dataset. And run
 ```shell
 cd prepare_training_data
 python split_label.py
@@ -68,9 +92,40 @@ python ./ctpn/train_net.py
 <img src="data/oriented_results/003.jpg" width=320 height=240 /><img src="data/oriented_results/004.jpg" width=320 height=240 />
 <img src="data/oriented_results/009.jpg" width=320 height=480 /><img src="data/oriented_results/010.png" width=320 height=320 />
 ***
-## oriented text connector
-- oriented text connector has been implemented, i's working, but still need futher improvement.
-- left figure is the result for DETECT_MODE H, right figure for DETECT_MODE O
-<img src="data/oriented_results/007.jpg" width=320 height=240 /><img src="data/oriented_results/007.jpg" width=320 height=240 />
-<img src="data/oriented_results/008.jpg" width=320 height=480 /><img src="data/oriented_results/008.jpg" width=320 height=480 />
-***
+## For generating mass training data:
+If you want to re-label large chunck of new dataset without labourasly hand annotating each image do the following:
+
+Go to chinese_ocr-master/ctpn/
+
+```shell
+python ./ctpn/demo2.py
+```
+This will generate a file like this:
+```
+text	644	475	788	504
+text	634	455	759	481
+text	538	312	673	334
+text	538	395	683	419
+text	528	335	702	366
+text	480	141	548	172
+text	470	312	519	334
+text	470	333	519	364
+text	470	119	587	151
+text	461	457	577	479
+text	461	420	721	448
+text	461	471	615	503
+text	413	529	682	540
+text	307	169	500	207
+text	288	214	442	238
+text	278	232	529	267
+text	277	146	405	177
+text	230	82	625	117
+text	8	30	847	89
+```
+Inside the ctpn/results directory. The above file corresponds to an image inside ctpn/demo directory
+
+Now we want to convert the above file into Pascalvoc format (so that we can see it using labelimg software).
+- To Do this copy above image and its correspoding text file.
+- Go to `ctpn/prepare_training_data`. Create two folders named `label_tmp` and `re_image`. Place your images and its corresponding text file as shown above inside `re_image` and `label_tmp` directory. 're_image' should contain all images and 'label_tmp' should contain all the text files.
+- Make sure ToVoc.py is placed inside the `ctpn/prepare_training_data` directory
+- Run ```/Downloads/eng_OCR/ctpn/prepare_training_data$ python ToVoc.py```. A new folder named TEXTVOC will be created and all your files viewable by labelimg are placed inside this TEXTVOC folder.

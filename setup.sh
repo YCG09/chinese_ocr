@@ -1,5 +1,7 @@
 pip install numpy scipy matplotlib pillow
-pip install easydict opencv-python keras h5py PyYAML
+# set the version of openccv-python if you got an error 
+# when you import cv2
+pip install easydict opencv-python==3.1.0.0 keras h5py PyYAML
 pip install cython==0.24
 
 # for gpu
